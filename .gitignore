@@ -1,0 +1,16 @@
+*.pyc
+*.swp
+.sass-cache
+._*
+*.bak
+*.db
+*.log
+*.sublime-workspace
+*.sublime-project
+.idea
+docker.conf
+logfile.*
+.~lock.*
+baklava/static
+.vscode/
+*.sqlite3

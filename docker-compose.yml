@@ -1,0 +1,36 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    container_name: pago46db
+    environment:
+      - POSTGRES_DB=app
+      - POSTGRES_USER=app
+      - POSTGRES_PASSWORD='app'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    expose:
+      - "3306"
+    ports:
+      - "3306:3306"
+    command: -p 3306
+  web:
+    container_name: pago46
+    build: .
+    command: tail -f /dev/null
+    volumes:
+      -  "./pago46:/usr/src/app/"
+    ports:
+      -  "8000:8000"
+    environment:
+      - DJANGO_DB_NAME=app
+      - DJANGO_DB_USER=app
+      - DJANGO_DB_PASSWORD='app'
+      - DJANGO_DB_PORT=3306
+      - DJANGO_DB_HOST=db
+      - DJANGO_SETTING_MODULE='pago46.settings'
+    depends_on:
+      - db
+volumes:
+  postgres_data:
+  
